@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "1H9gdtaYrzq6vgXZfPCGa1YtTlStMbq6OMTmQPDXpD4=",
+  "Source": "DormSearchBe.Api",
+  "BasePath": "_content/DormSearchBe.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DormSearchBe.Api\\wwwroot",
+      "Source": "DormSearchBe.Api",
+      "ContentRoot": "D:\\ĐỒ ÁN\\DormSearchBe\\DormSearch\\DormSearchBe.Api\\wwwroot\\",
+      "BasePath": "_content/DormSearchBe.Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
