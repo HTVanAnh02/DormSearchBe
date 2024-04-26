@@ -42,7 +42,8 @@ namespace DormSearchBe.Infrastructure.Context
             {
                 e.ToTable("Favorites");
                 e.HasKey(e => e.FavoritesId);
-                e.HasOne(e => e.User).WithMany(e => e.Favorites).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);
+            /*    e.HasOne(e => e.Users).WithMany(e => e.Favorites).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(e => e.Houses).WithMany(e => e.Favorites).HasForeignKey(e => e.HousesId).OnDelete(DeleteBehavior.ClientSetNull);*/
             });
             modelBuilder.Entity<Houses>(e =>
             {
@@ -53,15 +54,15 @@ namespace DormSearchBe.Infrastructure.Context
                 e.HasOne(e => e.Favorites).WithMany(e => e.Houses).HasForeignKey(e => e.FavoritesId).OnDelete(DeleteBehavior.ClientSetNull);
                 e.HasOne(e => e.Prices).WithMany(e => e.Houses).HasForeignKey(e => e.PriceId).OnDelete(DeleteBehavior.ClientSetNull);
                 e.HasOne(e => e.Ratings).WithMany(e => e.Houses).HasForeignKey(e => e.RatingsId).OnDelete(DeleteBehavior.ClientSetNull);
-                e.HasOne(e => e.Users).WithMany(e => e.Houses).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);
+                /*e.HasOne(e => e.Users).WithMany(e => e.Houses).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);*/
                 e.HasOne(e => e.Roomstyles).WithMany(e => e.Houses).HasForeignKey(e => e.RoomstyleId).OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Message>(e =>
             {
                 e.ToTable("Messages");
-                e.HasKey(e => e.MessagesId);
-                e.HasOne(e => e.User).WithMany(e => e.Messages).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasKey(e => e.MessagesId);/*
+                e.HasOne(e => e.User).WithMany(e => e.Messages).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);*/
             });
             modelBuilder.Entity<Prices>(e =>
             {
@@ -72,7 +73,8 @@ namespace DormSearchBe.Infrastructure.Context
             {
                 e.ToTable("Ratings");
                 e.HasKey(e => e.RatingsId);
-                e.HasOne(e => e.Users).WithMany(e => e.Ratings).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);
+              /*  e.HasOne(e => e.Users).WithMany(e => e.Ratings).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(e => e.Houses).WithMany(e => e.Ratings).HasForeignKey(e => e.HousesId).OnDelete(DeleteBehavior.ClientSetNull);*/
             });
 
             modelBuilder.Entity<Role>(e =>
@@ -90,6 +92,10 @@ namespace DormSearchBe.Infrastructure.Context
                 e.ToTable("Users");
                 e.HasKey(e => e.UserId);
                 e.HasOne(e => e.Roles).WithMany(e => e.Users).HasForeignKey(e => e.RoleId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(e => e.Ratings).WithMany(e => e.Users).HasForeignKey(e => e.RatingsId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(e => e.Favorites).WithMany(e => e.Users).HasForeignKey(e => e.FavoritesId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(e => e.Messages).WithMany(e => e.Users).HasForeignKey(e => e.MessageId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(e => e.Houses).WithMany(e => e.Users).HasForeignKey(e => e.HousesId).OnDelete(DeleteBehavior.ClientSetNull);
             });
             modelBuilder.Entity<Refresh_Token>(e =>
             {

@@ -30,7 +30,6 @@ namespace DormSearchBe.Application.Service
         private readonly IMapper _mapper;
         private readonly IAreasRepository _areasRepository;
         private readonly ICityRepository _cityRepository;
-        private readonly IFavoritesRepository _favoritesRepository;
         private readonly IApprovaRepository _approvalsRepository;
         private readonly IPricesRepository _pricesRepository;
         private readonly IRoomstyleRepository _roomstyleRepository;
@@ -38,7 +37,6 @@ namespace DormSearchBe.Application.Service
         private readonly Cloudinary _cloudinary;
         public HousesService(IHousesRepository housesRepository, IMapper mapper,
             IAreasRepository areasRepository,
-            IFavoritesRepository favoritesRepository,
             ICityRepository cityRepository,
             IApprovaRepository professionRepository,
             IPricesRepository aryRepository,
@@ -49,7 +47,6 @@ namespace DormSearchBe.Application.Service
             _housesRepository = housesRepository;
             _mapper = mapper;
             _areasRepository = areasRepository;
-            _favoritesRepository = favoritesRepository;
             _cityRepository = cityRepository;
             _approvalsRepository = professionRepository;
             _pricesRepository = aryRepository;
@@ -63,14 +60,12 @@ namespace DormSearchBe.Application.Service
             var query = _mapper.Map<List<HousesQuery>>(_housesRepository.GetAllData().Where(x => x.UserId == objId).ToList());
             var areass = _mapper.Map<List<AreasDto>>(_areasRepository.GetAllData());
             var pricess = _mapper.Map<List<PricesDto>>(_pricesRepository.GetAllData());
-            var favoritess = _mapper.Map<List<FavoritesDto>>(_favoritesRepository.GetAllData());
             var cities = _mapper.Map<List<CityDto>>(_cityRepository.GetAllData());
             var users = _mapper.Map<List<UserDto>>(_usersRepository.GetAllData());
             var roomstyles = _mapper.Map<List<RoomstyleDto>>(_roomstyleRepository.GetAllData());
             var items = from houses in query
                         join areas in areass on houses.AreasId equals areas.AreasId
                         join prices in pricess on houses.PriceId equals prices.PriceId
-                        join favorites in favoritess on houses.FavoritesId equals favorites.FavoritesId
                         join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                         join user in users on houses.UsersId equals user.UserId
                         join city in cities on houses.CityId equals city.CityId
@@ -85,7 +80,6 @@ namespace DormSearchBe.Application.Service
                            DateSubmitted = houses.DateSubmitted,
                            AreasName = areas.AreasName,
                            Price = prices.Price,
-                           FavoritesName = favorites.FavoritesName,
                            RoomstyleName = roomstyle.RoomstyleName,
                            UsersName = user.FullName,
                            CityName = city.CityName,
@@ -201,7 +195,6 @@ namespace DormSearchBe.Application.Service
             var query = _housesRepository.GetAllData().AsQueryable();
             var pricess = _pricesRepository.GetAllData();
             var areass = _areasRepository.GetAllData();
-            var favoritess = _favoritesRepository.GetAllData();
             var roomstyles = _roomstyleRepository.GetAllData();
             var approvals = _approvalsRepository.GetAllData();
             var cities = _cityRepository.GetAllData();
@@ -210,7 +203,6 @@ namespace DormSearchBe.Application.Service
             var items = from houses in query
                         join areas in areass on houses.AreasId equals areas.AreasId
                         join prices in pricess on houses.PriceId equals prices.PriceId
-                        join favorites in favoritess on houses.FavoritesId equals favorites.FavoritesId
                         join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                         join user in users on houses.UserId equals user.UserId
                         join city in cities on houses.CityId equals city.CityId
@@ -226,8 +218,6 @@ namespace DormSearchBe.Application.Service
                             AreasName = areas.AreasName,
                             PriceId = houses.PriceId,
                             Price = prices.Price,
-                            FavoritesId = houses.FavoritesId,
-                            FavoritesName = favorites.FavoritesName,
                             RoomstyleId = houses.RoomstyleId,
                             RoomstyleName = roomstyle.RoomstyleName,
                             UsersId = houses.UserId,
@@ -280,7 +270,6 @@ namespace DormSearchBe.Application.Service
             var query = _housesRepository.GetAllData().AsQueryable();
             var prices = _pricesRepository.GetAllData();
             var areass = _areasRepository.GetAllData();
-            var favoritess = _favoritesRepository.GetAllData();
             var roomstyles = _roomstyleRepository.GetAllData();
             var approvals = _approvalsRepository.GetAllData();
             var cities = _cityRepository.GetAllData();
@@ -289,7 +278,6 @@ namespace DormSearchBe.Application.Service
             var item = from houses in query
                        join areas in areass on houses.AreasId equals areas.AreasId
                        join price in prices on houses.PriceId equals price.PriceId
-                       join favorites in favoritess on houses.FavoritesId equals favorites.FavoritesId
                        join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                        join user in users on houses.UserId equals user.UserId
                        join city in cities on houses.CityId equals city.CityId
@@ -306,8 +294,6 @@ namespace DormSearchBe.Application.Service
                            AreasName = areas.AreasName,
                            PriceId = houses.PriceId,
                            Price = price.Price,
-                           FavoritesId = houses.FavoritesId,
-                           FavoritesName = favorites.FavoritesName,
                            RoomstyleId = houses.RoomstyleId,
                            RoomstyleName = roomstyle.RoomstyleName,
                            UsersId = houses.UserId,
@@ -330,7 +316,6 @@ namespace DormSearchBe.Application.Service
             var query = _housesRepository.GetAllData().AsQueryable();
             var prices = _pricesRepository.GetAllData();
             var areass = _areasRepository.GetAllData();
-            var favoritess = _favoritesRepository.GetAllData();
             var roomstyles = _roomstyleRepository.GetAllData();
             var approvals = _approvalsRepository.GetAllData();
             var cities = _cityRepository.GetAllData();
@@ -339,7 +324,6 @@ namespace DormSearchBe.Application.Service
             var items = from houses in query
                         join areas in areass on houses.AreasId equals areas.AreasId
                         join price in prices on houses.PriceId equals price.PriceId
-                        join favorites in favoritess on houses.FavoritesId equals favorites.FavoritesId
                         join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                         join user in users on houses.UserId equals user.UserId
                         join city in cities on houses.CityId equals city.CityId
@@ -356,8 +340,6 @@ namespace DormSearchBe.Application.Service
                             AreasName = areas.AreasName,
                             PriceId = houses.PriceId,
                             Price = price.Price,
-                            FavoritesId = houses.FavoritesId,
-                            FavoritesName = favorites.FavoritesName,
                             RoomstyleId = houses.RoomstyleId,
                             RoomstyleName = roomstyle.RoomstyleName,
                             UsersId = houses.UserId,

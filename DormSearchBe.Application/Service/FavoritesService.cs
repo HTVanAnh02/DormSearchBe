@@ -25,18 +25,18 @@ namespace DormSearchBe.Application.Service
             _mapper = mapper;
         }
 
-        public DataResponse<FavoritesQuery> Create(FavoritesDto dto)
+        public DataResponse<FavoritesDto> Create(FavoritesDto dto)
         {
             dto.FavoritesId = Guid.NewGuid();
             var newData = _favoritesRepository.Create(_mapper.Map<Favorites>(dto));
             if (newData != null)
             {
-                return new DataResponse<FavoritesQuery>(_mapper.Map<FavoritesQuery>(newData), HttpStatusCode.OK, HttpStatusMessages.AddedSuccesfully);
+                return new DataResponse<FavoritesDto>(_mapper.Map<FavoritesDto>(newData), HttpStatusCode.OK, HttpStatusMessages.AddedSuccesfully);
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.AddedError);
         }
 
-        public DataResponse<FavoritesQuery> Delete(Guid id)
+        public DataResponse<FavoritesDto> Delete(Guid id)
         {
             var item = _favoritesRepository.GetById(id);
             if (item == null)
@@ -46,30 +46,26 @@ namespace DormSearchBe.Application.Service
             var data = _favoritesRepository.Delete(id);
             if (data != null)
             {
-                return new DataResponse<FavoritesQuery>(_mapper.Map<FavoritesQuery>(item), HttpStatusCode.OK, HttpStatusMessages.DeletedSuccessfully);
+                return new DataResponse<FavoritesDto>(_mapper.Map<FavoritesDto>(item), HttpStatusCode.OK, HttpStatusMessages.DeletedSuccessfully);
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.DeletedError);
         }
 
-        public DataResponse<FavoritesQuery> GetById(Guid id)
+        public DataResponse<FavoritesDto> GetById(Guid id)
         {
             var item = _favoritesRepository.GetById(id);
             if (item == null)
             {
                 throw new ApiException(HttpStatusCode.ITEM_NOT_FOUND, HttpStatusMessages.NotFound);
             }
-            return new DataResponse<FavoritesQuery>(_mapper.Map<FavoritesQuery>(item), HttpStatusCode.OK, HttpStatusMessages.OK);
+            return new DataResponse<FavoritesDto>(_mapper.Map<FavoritesDto>(item), HttpStatusCode.OK, HttpStatusMessages.OK);
         }
 
-        public PagedDataResponse<FavoritesQuery> Items(CommonListQuery commonList)
+        public PagedDataResponse<FavoritesDto> Items(CommonListQuery commonList)
         {
-            var query = _mapper.Map<List<FavoritesQuery>>(_favoritesRepository.GetAllData());
-            if (!string.IsNullOrEmpty(commonList.keyword))
-            {
-                query = query.Where(x => x.FavoritesName.Contains(commonList.keyword)).ToList();
-            }
-            var paginatedResult = PaginatedList<FavoritesQuery>.ToPageList(query, commonList.page, commonList.limit);
-            return new PagedDataResponse<FavoritesQuery>(paginatedResult, 200, query.Count());
+            var query = _mapper.Map<List<FavoritesDto>>(_favoritesRepository.GetAllData());
+            var paginatedResult = PaginatedList<FavoritesDto>.ToPageList(query, commonList.page, commonList.limit);
+            return new PagedDataResponse<FavoritesDto>(paginatedResult, 200, query.Count());
         }
 
         public DataResponse<List<FavoritesDto>> ItemsList()
@@ -84,7 +80,7 @@ namespace DormSearchBe.Application.Service
         }
 
 
-        public DataResponse<FavoritesQuery> Update(FavoritesDto dto)
+        public DataResponse<FavoritesDto> Update(FavoritesDto dto)
         {
             var item = _favoritesRepository.GetById(dto.FavoritesId);
             if (item == null)
@@ -94,9 +90,10 @@ namespace DormSearchBe.Application.Service
             var newData = _favoritesRepository.Update(_mapper.Map(dto, item));
             if (newData != null)
             {
-                return new DataResponse<FavoritesQuery>(_mapper.Map<FavoritesQuery>(newData), HttpStatusCode.OK, HttpStatusMessages.UpdatedSuccessfully);
+                return new DataResponse<FavoritesDto>(_mapper.Map<FavoritesDto>(newData), HttpStatusCode.OK, HttpStatusMessages.UpdatedSuccessfully);
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.UpdatedError);
         }
+
     }
 }    

@@ -9,11 +9,15 @@ namespace DormSearchBe.Domain.Entity
 {
     public class Favorites:BaseEntity
     {
-        public Guid FavoritesId {  get; set; }
-        public string FavoritesName { get; set; }
-        public Guid HousesId { get; set; }
+        public Guid FavoritesId { get; set; }
         public Guid UserId { get; set; }
-        public User? User { get; set; }
+        public Guid HousesId { get; set; }
+        public bool IsFavorites { get; set; }
         public ICollection<Houses>? Houses { get; set; }
+        public ICollection<User>? Users { get; set; }
+        public Favorites()
+        {
+            IsFavorites = false;
+        }
     }
 }

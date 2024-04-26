@@ -16,27 +16,13 @@ namespace DormSearchBe.Domain.Entity
         public string? Content { get; set; }
         public bool? IsStatus { get; set; }
         public bool? IsFeedback { get; set; }
-        public User? Users { get; set; }
         public ICollection<Houses>? Houses { get; set; }
+        public ICollection<User>? Users { get; set; }
         public Ratings()
         {
             IsStatus = false;
             IsFeedback = null;
         }
-        /*  public Guid RatingsId { get; set; }
-          public string? RatingsDateTime { get; set; }
-          public Guid HousesId { get; set; }
-          public Guid UserId { get; set; }
-          public string? Content { get; set; }
-          public bool? IsStatus { get; set; }
-          public bool? IsFeedback { get; set; }
-          public User? User { get; set; }
-          public ICollection<Houses>? Houses { get; set; }
-          public Ratings()
-          {
-              IsStatus = false;
-              IsFeedback = null;
-          }*/
 
     }
 }

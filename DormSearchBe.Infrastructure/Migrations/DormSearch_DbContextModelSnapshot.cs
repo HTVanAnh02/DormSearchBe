@@ -124,12 +124,11 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FavoritesName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("HousesId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsFavorites")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -153,8 +152,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FavoritesId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Favorites", (string)null);
                 });
@@ -184,6 +181,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Interior")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Photos")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("PriceId")
@@ -233,8 +233,6 @@ namespace DormSearchBe.Infrastructure.Migrations
 
                     b.HasIndex("RoomstyleId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Houses", (string)null);
                 });
 
@@ -269,8 +267,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MessagesId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Messages", (string)null);
                 });
@@ -351,8 +347,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("RatingsId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Ratings", (string)null);
                 });
@@ -479,20 +473,32 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("FavoritesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("HousesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool?>("Is_Active")
                         .HasColumnType("bit");
+
+                    b.Property<Guid?>("MessageId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("RatingsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
@@ -520,19 +526,17 @@ namespace DormSearchBe.Infrastructure.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("FavoritesId");
+
+                    b.HasIndex("HousesId");
+
+                    b.HasIndex("MessageId");
+
+                    b.HasIndex("RatingsId");
+
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("DormSearchBe.Domain.Entity.Favorites", b =>
-                {
-                    b.HasOne("DormSearchBe.Domain.Entity.User", "User")
-                        .WithMany("Favorites")
-                        .HasForeignKey("UserId")
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Houses", b =>
@@ -561,10 +565,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .WithMany("Houses")
                         .HasForeignKey("RoomstyleId");
 
-                    b.HasOne("DormSearchBe.Domain.Entity.User", "Users")
-                        .WithMany("Houses")
-                        .HasForeignKey("UserId");
-
                     b.Navigation("Areas");
 
                     b.Navigation("City");
@@ -576,28 +576,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Navigation("Ratings");
 
                     b.Navigation("Roomstyles");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("DormSearchBe.Domain.Entity.Message", b =>
-                {
-                    b.HasOne("DormSearchBe.Domain.Entity.User", "User")
-                        .WithMany("Messages")
-                        .HasForeignKey("UserId")
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DormSearchBe.Domain.Entity.Ratings", b =>
-                {
-                    b.HasOne("DormSearchBe.Domain.Entity.User", "Users")
-                        .WithMany("Ratings")
-                        .HasForeignKey("UserId")
-                        .IsRequired();
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Refresh_Token", b =>
@@ -612,9 +590,33 @@ namespace DormSearchBe.Infrastructure.Migrations
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.User", b =>
                 {
+                    b.HasOne("DormSearchBe.Domain.Entity.Favorites", "Favorites")
+                        .WithMany("Users")
+                        .HasForeignKey("FavoritesId");
+
+                    b.HasOne("DormSearchBe.Domain.Entity.Houses", "Houses")
+                        .WithMany("Users")
+                        .HasForeignKey("HousesId");
+
+                    b.HasOne("DormSearchBe.Domain.Entity.Message", "Messages")
+                        .WithMany("Users")
+                        .HasForeignKey("MessageId");
+
+                    b.HasOne("DormSearchBe.Domain.Entity.Ratings", "Ratings")
+                        .WithMany("Users")
+                        .HasForeignKey("RatingsId");
+
                     b.HasOne("DormSearchBe.Domain.Entity.Role", "Roles")
                         .WithMany("Users")
                         .HasForeignKey("RoleId");
+
+                    b.Navigation("Favorites");
+
+                    b.Navigation("Houses");
+
+                    b.Navigation("Messages");
+
+                    b.Navigation("Ratings");
 
                     b.Navigation("Roles");
                 });
@@ -632,6 +634,18 @@ namespace DormSearchBe.Infrastructure.Migrations
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Favorites", b =>
                 {
                     b.Navigation("Houses");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DormSearchBe.Domain.Entity.Houses", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DormSearchBe.Domain.Entity.Message", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Prices", b =>
@@ -642,6 +656,8 @@ namespace DormSearchBe.Infrastructure.Migrations
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Ratings", b =>
                 {
                     b.Navigation("Houses");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Role", b =>
@@ -656,14 +672,6 @@ namespace DormSearchBe.Infrastructure.Migrations
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.User", b =>
                 {
-                    b.Navigation("Favorites");
-
-                    b.Navigation("Houses");
-
-                    b.Navigation("Messages");
-
-                    b.Navigation("Ratings");
-
                     b.Navigation("Refresh_Tokens");
                 });
 #pragma warning restore 612, 618

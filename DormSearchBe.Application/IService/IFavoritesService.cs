@@ -11,11 +11,11 @@ namespace DormSearchBe.Application.IService
 {
     public interface IFavoritesService
     {
-        PagedDataResponse<FavoritesQuery> Items(CommonListQuery commonList);
+        PagedDataResponse<FavoritesDto> Items(CommonListQuery commonList);
         DataResponse<List<FavoritesDto>> ItemsList();
-        DataResponse<FavoritesQuery> Create(FavoritesDto dto);
-        DataResponse<FavoritesQuery> Update(FavoritesDto dto);
-        DataResponse<FavoritesQuery> Delete(Guid id);
-        DataResponse<FavoritesQuery> GetById(Guid id);
+        DataResponse<FavoritesDto> Create(FavoritesDto dto);
+        DataResponse<FavoritesDto> Update(FavoritesDto dto);
+        DataResponse<FavoritesDto> Delete(Guid id);
+        DataResponse<FavoritesDto> GetById(Guid id);
     }
 }

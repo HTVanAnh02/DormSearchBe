@@ -19,14 +19,18 @@ namespace DormSearchBe.Domain.Entity
         public string? PhoneNumber { get; set; }
         public string? Avatar { get; set; }
         public Guid? RoleId { get; set; }
+        public Guid? RatingsId { get; set; }
+        public Guid? FavoritesId { get; set; }
+        public Guid? MessageId { get; set; }
+        public Guid? HousesId { get; set; }
         public bool? Is_Active { get; set; }
         public string? Role { get; set; }
         public Role? Roles { get; set; }
-        public virtual ICollection<Refresh_Token>? Refresh_Tokens { get; set; }
-        public virtual ICollection<Favorites> Favorites { get; set; }
-        public virtual ICollection<Message> Messages { get; set; }
-        public virtual ICollection<Ratings> Ratings { get; set; }
-        public ICollection<Houses>? Houses { get; set; }
+        public Ratings? Ratings { get; set; }
+        public Favorites? Favorites { get; set; }
+        public Message? Messages { get; set; }
+        public Houses? Houses { get; set; }
+        public  ICollection<Refresh_Token>? Refresh_Tokens { get; set; }
         public User() 
         {
             Role = " Admin";
