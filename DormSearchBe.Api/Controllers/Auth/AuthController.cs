@@ -45,20 +45,16 @@ namespace DormSearchBe.Api.Controllers.Auth
             throw new ApiException(HttpStatusCode.NOT_FOUND, HttpStatusMessages.NotFound);
         }
         [Authorize]
-        [HttpGet("Hello")]
-        public IActionResult Get()
-        {
-            return Ok("Ok");
-        }
         [HttpPost("UserLogin")]
         public IActionResult User_Login(Login dto)
         {
             return Ok(_userService.Login(dto));
         }
-        [HttpPost("google-login")]
-        public IActionResult GoogleLogin([FromBody] GoogleLoginRequest request)
+        [Authorize]
+        [HttpPost("UserRegister")]
+        public IActionResult User_Register(Register dto)
         {
-            return Ok(_userService.UserLoginByGoole(request));
+            return Ok(_userService.Register(dto));
         }
         [HttpPost("logout")]
         public IActionResult Logout()
@@ -97,7 +93,12 @@ namespace DormSearchBe.Api.Controllers.Auth
             // Trường hợp không tìm thấy thông tin người dùng.
             throw new ApiException(HttpStatusCode.NOT_FOUND, HttpStatusMessages.NotFound);
         }
-
+        [HttpPost("google-login")]
+        public IActionResult GoogleLogin([FromBody] GoogleLoginRequest request)
+        {
+            return Ok(_userService.UserLoginByGoole(request));
+        }
+        
 
     }
 }

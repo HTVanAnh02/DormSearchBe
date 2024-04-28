@@ -57,41 +57,6 @@ namespace DormSearchBe.Api.Controllers.Ratings
         {
             return Ok(_ratingsService.GetById(id));
         }
-        [Authorize(Roles = "Landlord")]
-        [HttpGet("ItemsByLandlord")]
-        public IActionResult ItemsByLandlord([FromQuery] CommonQueryByHome query)
-        {
-            var objId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var role = HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
-            if (objId == null)
-            {
-                throw new ApiException(HttpStatusCode.FORBIDDEN, HttpStatusMessages.Forbidden);
-            }
-            return Ok(_ratingsService.ItemsByUser(query, Guid.Parse(objId)));
-        }
-        [Authorize(Roles = "Landlord")]
-        [HttpGet("ItemsByUseruitable")]
-        public IActionResult ItemsByUseruitable([FromQuery] CommonQueryByHome query)
-        {
-            var objId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var role = HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
-            if (objId == null)
-            {
-                throw new ApiException(HttpStatusCode.FORBIDDEN, HttpStatusMessages.Forbidden);
-            }
-            return Ok(_ratingsService.ItemsByUserSuitable(query, Guid.Parse(objId)));
-        }
-        [Authorize(Roles = "Students")]
-        [HttpGet("ItemsByStudents")]
-        public IActionResult ItemsByStudents([FromQuery] CommonListQuery query)
-        {
-            var objId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (objId == null)
-            {
-                throw new ApiException(HttpStatusCode.FORBIDDEN, HttpStatusMessages.Forbidden);
-            }
-            return Ok(_ratingsService.ItemsByStudents(query, Guid.Parse(objId)));
-        }
         [HttpPatch("ChangeFeedback")]
         public IActionResult ChangeFeedback(RatingsChangeFeedback changeFeedback)
         {

@@ -35,7 +35,6 @@ namespace DormSearchBe.Application.Helpers
 
             return true;
         }
-
         public static string GenerateRandomString(int length, bool createGuid = true)
         {
             var randomstring = new string(Enumerable

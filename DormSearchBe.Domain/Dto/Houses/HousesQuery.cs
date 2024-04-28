@@ -18,8 +18,6 @@ namespace DormSearchBe.Domain.Dto.Houses
         public string? Photos { get; set; }
         public Guid? AreasId { get; set; }
         public string? AreasName { get; set; }
-        public Guid? FavoritesId {  get; set; }
-        public string? FavoritesName {  get; set; }
         public Guid? UsersId { get; set; }
         public string? UsersName { get; set; }
         public Guid? CityId { get; set; }
@@ -28,5 +26,7 @@ namespace DormSearchBe.Domain.Dto.Houses
         public string? Price {  get; set; }
         public Guid? RoomstyleId { get; set; }
         public string? RoomstyleName { get;set; }
+        public Guid? FavoritesId {  get; set; }
+        public bool IsFavorites { get; set; }
     }
 }

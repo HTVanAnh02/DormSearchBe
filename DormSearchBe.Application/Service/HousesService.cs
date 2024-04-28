@@ -58,13 +58,13 @@ namespace DormSearchBe.Application.Service
         public PagedDataResponse<HousesQuery> Items(CommonListQuery commonListQuery, Guid objId)
         {
             var query = _mapper.Map<List<HousesQuery>>(_housesRepository.GetAllData().Where(x => x.UserId == objId).ToList());
-            var areass = _mapper.Map<List<AreasDto>>(_areasRepository.GetAllData());
+            var areas = _mapper.Map<List<AreasDto>>(_areasRepository.GetAllData());
             var pricess = _mapper.Map<List<PricesDto>>(_pricesRepository.GetAllData());
             var cities = _mapper.Map<List<CityDto>>(_cityRepository.GetAllData());
             var users = _mapper.Map<List<UserDto>>(_usersRepository.GetAllData());
             var roomstyles = _mapper.Map<List<RoomstyleDto>>(_roomstyleRepository.GetAllData());
             var items = from houses in query
-                        join areas in areass on houses.AreasId equals areas.AreasId
+                        join area in areas on houses.AreasId equals area.AreasId
                         join prices in pricess on houses.PriceId equals prices.PriceId
                         join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                         join user in users on houses.UsersId equals user.UserId
@@ -78,7 +78,7 @@ namespace DormSearchBe.Application.Service
                            Interior = houses.Interior,
                            AddressHouses = houses.AddressHouses,
                            DateSubmitted = houses.DateSubmitted,
-                           AreasName = areas.AreasName,
+                           AreasName = area.AreasName,
                            Price = prices.Price,
                            RoomstyleName = roomstyle.RoomstyleName,
                            UsersName = user.FullName,
@@ -194,14 +194,14 @@ namespace DormSearchBe.Application.Service
         {
             var query = _housesRepository.GetAllData().AsQueryable();
             var pricess = _pricesRepository.GetAllData();
-            var areass = _areasRepository.GetAllData();
+            var areas = _areasRepository.GetAllData();
             var roomstyles = _roomstyleRepository.GetAllData();
             var approvals = _approvalsRepository.GetAllData();
             var cities = _cityRepository.GetAllData();
             var users = _usersRepository.GetAllData();
             
             var items = from houses in query
-                        join areas in areass on houses.AreasId equals areas.AreasId
+                        join area in areas on houses.AreasId equals area.AreasId
                         join prices in pricess on houses.PriceId equals prices.PriceId
                         join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                         join user in users on houses.UserId equals user.UserId
@@ -215,7 +215,7 @@ namespace DormSearchBe.Application.Service
                             AddressHouses = houses.AddressHouses,
                             DateSubmitted = houses.DateSubmitted,
                             AreasId = houses.AreasId,
-                            AreasName = areas.AreasName,
+                            AreasName = area.AreasName,
                             PriceId = houses.PriceId,
                             Price = prices.Price,
                             RoomstyleId = houses.RoomstyleId,
@@ -269,14 +269,14 @@ namespace DormSearchBe.Application.Service
         {
             var query = _housesRepository.GetAllData().AsQueryable();
             var prices = _pricesRepository.GetAllData();
-            var areass = _areasRepository.GetAllData();
+            var areas = _areasRepository.GetAllData();
             var roomstyles = _roomstyleRepository.GetAllData();
             var approvals = _approvalsRepository.GetAllData();
             var cities = _cityRepository.GetAllData();
             var users = _usersRepository.GetAllData();
 
             var item = from houses in query
-                       join areas in areass on houses.AreasId equals areas.AreasId
+                       join area in areas on houses.AreasId equals area.AreasId
                        join price in prices on houses.PriceId equals price.PriceId
                        join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                        join user in users on houses.UserId equals user.UserId
@@ -291,7 +291,7 @@ namespace DormSearchBe.Application.Service
                            AddressHouses = houses.AddressHouses,
                            DateSubmitted = houses.DateSubmitted,
                            AreasId = houses.AreasId,
-                           AreasName = areas.AreasName,
+                           AreasName = area.AreasName,
                            PriceId = houses.PriceId,
                            Price = price.Price,
                            RoomstyleId = houses.RoomstyleId,
@@ -315,14 +315,14 @@ namespace DormSearchBe.Application.Service
         {
             var query = _housesRepository.GetAllData().AsQueryable();
             var prices = _pricesRepository.GetAllData();
-            var areass = _areasRepository.GetAllData();
+            var areas = _areasRepository.GetAllData();
             var roomstyles = _roomstyleRepository.GetAllData();
             var approvals = _approvalsRepository.GetAllData();
             var cities = _cityRepository.GetAllData();
             var users = _usersRepository.GetAllData();
 
             var items = from houses in query
-                        join areas in areass on houses.AreasId equals areas.AreasId
+                        join area in areas on houses.AreasId equals area.AreasId
                         join price in prices on houses.PriceId equals price.PriceId
                         join roomstyle in roomstyles on houses.RoomstyleId equals roomstyle.RoomstyleId
                         join user in users on houses.UserId equals user.UserId
@@ -337,7 +337,7 @@ namespace DormSearchBe.Application.Service
                             AddressHouses = houses.AddressHouses,
                             DateSubmitted = houses.DateSubmitted,
                             AreasId = houses.AreasId,
-                            AreasName = areas.AreasName,
+                            AreasName = area.AreasName,
                             PriceId = houses.PriceId,
                             Price = price.Price,
                             RoomstyleId = houses.RoomstyleId,

@@ -187,7 +187,6 @@ namespace DormSearchBe.Application.Service
                 AccessToken = token,
                 RefreshToken = CreateRefreshToken(),
                 AccessTokenExpiration = (int)((DateTimeOffset)accessTokenExpiration).ToUnixTimeSeconds(),
-                //RefreshTokenExpiration = (int)((DateTimeOffset)refreshTokenExpiration).ToUnixTimeSeconds()
                 RefreshTokenExpiration = refreshtoken.RefreshTokenExpiration
             };
             var refresh_token = new RefreshTokenDto

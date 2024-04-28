@@ -145,32 +145,7 @@ namespace DormSearchBe.Application.Service
             return new DataResponse<UserQuery>(_mapper.Map<UserQuery>(item), HttpStatusCode.OK, HttpStatusMessages.UpdatedSuccessfully);
         }
 
-        public List<Approval> GetUserApprovals(Guid id)
-        {
-            var user = _userRepository.GetById(id);
-            var role = _mapper.Map<RoleDto>(_roleRepository.GetById(user.RoleId ?? Guid.Empty));
-            string[] approvalIds = role.ApprovalId.Split(", ", StringSplitOptions.RemoveEmptyEntries);
-
-            List<Approval> approvals = new List<Approval>();
-
-            foreach (var approvalId in approvalIds)
-            {
-                var approval = _approvalRepository.GetByString(approvalId);
-
-                if (approval != null)
-                {
-                    approvals.Add(approval);
-                }
-            }
-
-            return approvals;
-
-        }
-
-        public List<Approval> GetUserApproval(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+    
         public DataResponse<TokenDto> Login(Login dto)
         {
             var user = _userRepository.GetAllData().Where(x => x.Email == dto.Email).SingleOrDefault();
@@ -189,6 +164,50 @@ namespace DormSearchBe.Application.Service
                 return new DataResponse<TokenDto>(CreateToken(user), 200, "Đăng nhập thành công");
             }
             throw new ApiException(401, "Đăng nhập thất bại");
+        }
+        public DataResponse<TokenDto> Register(Register dto)
+        {
+            try
+            {
+                var existingUser = _userRepository.GetAllData().FirstOrDefault(x => x.Email == dto.Email);
+                if (existingUser != null)
+                {
+                    throw new ApiException(400, "Email đã được sử dụng cho một tài khoản khác");
+                }
+
+                var newUser = new User
+                {
+                    Email = dto.Email,
+                    Password = PasswordHelper.CreateHashedPassword(dto.Password),
+                    // Các thuộc tính khác của người dùng
+                };
+/*
+                _userRepository.Add(newUser);
+                _userRepository.SaveChanges();*/
+
+                return new DataResponse<TokenDto>(CreateToken(newUser), 200, "Đăng ký thành công");
+            }
+            catch (Exception)
+            {
+                throw new ApiException(500, "Đã xảy ra lỗi khi đăng ký người dùng.");
+            }
+        }
+        public DataResponse<UserDto> GetProfile(Guid userId)
+        {
+            var user = _userRepository.GetById(userId);
+            if (user == null)
+            {
+                throw new ApiException(404, "Người dùng không tồn tại");
+            }
+
+            var profile = new UserDto
+            {
+                FullName = user.FullName,
+                Email = user.Email,
+                Avatar = user.Avatar,
+            };
+
+            return new DataResponse<UserDto>(profile, 200, "Lấy thông tin profile thành công");
         }
         private string CreateRefreshToken()
         {
@@ -380,7 +399,13 @@ namespace DormSearchBe.Application.Service
             throw new NotImplementedException();
         }
 
+
         public DataResponse<TokenDto> UserLoginByGoole(GoogleLoginRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Approval> GetUserApproval(Guid id)
         {
             throw new NotImplementedException();
         }

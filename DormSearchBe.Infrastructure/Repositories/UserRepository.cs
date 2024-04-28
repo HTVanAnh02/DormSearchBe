@@ -11,8 +11,17 @@ namespace DormSearchBe.Infrastructure.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
+        private readonly DormSearch_DbContext _context;
+
         public UserRepository(DormSearch_DbContext context) : base(context)
         {
+            _context = context;
+        }
+
+        public void Add(User user)
+        {
+            _context.Set<User>().Add(user);
+            _context.SaveChanges();
         }
     }
 }

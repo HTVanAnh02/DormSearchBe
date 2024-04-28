@@ -15,9 +15,6 @@ namespace DormSearchBe.Domain.Entity
         public bool IsFavorites { get; set; }
         public ICollection<Houses>? Houses { get; set; }
         public ICollection<User>? Users { get; set; }
-        public Favorites()
-        {
-            IsFavorites = false;
-        }
+        
     }
 }
