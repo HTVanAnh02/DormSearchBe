@@ -181,9 +181,8 @@ namespace DormSearchBe.Application.Service
                     Password = PasswordHelper.CreateHashedPassword(dto.Password),
                     // Các thuộc tính khác của người dùng
                 };
-/*
-                _userRepository.Add(newUser);
-                _userRepository.SaveChanges();*/
+
+                _userRepository.Create(newUser);
 
                 return new DataResponse<TokenDto>(CreateToken(newUser), 200, "Đăng ký thành công");
             }

@@ -1,11 +1,14 @@
 ﻿using DormSearchBe.Application.Helpers;
 using DormSearchBe.Application.IService;
 using DormSearchBe.Domain.Dto.Roomstyle;
+using DormSearchBe.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DormSearchBe.Api.Controllers.Roomstyle
 {
-    public class RoomstyleController :ControllerBase
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RoomstyleController : ControllerBase
     {
         private readonly IRoomstyleService _roomstyleService;
         public RoomstyleController(IRoomstyleService roomstyleService)

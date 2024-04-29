@@ -162,6 +162,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Acreage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AddressHouses")
                         .HasColumnType("nvarchar(max)");
 
@@ -186,8 +189,8 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<string>("Photos")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PriceId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Price")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("RatingsId")
                         .HasColumnType("uniqueidentifier");
@@ -226,8 +229,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.HasIndex("CityId");
 
                     b.HasIndex("FavoritesId");
-
-                    b.HasIndex("PriceId");
 
                     b.HasIndex("RatingsId");
 
@@ -269,38 +270,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.HasKey("MessagesId");
 
                     b.ToTable("Messages", (string)null);
-                });
-
-            modelBuilder.Entity("DormSearchBe.Domain.Entity.Prices", b =>
-                {
-                    b.Property<Guid>("PriceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("createdAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("deletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("updatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PriceId");
-
-                    b.ToTable("Price", (string)null);
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Ratings", b =>
@@ -553,10 +522,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .WithMany("Houses")
                         .HasForeignKey("FavoritesId");
 
-                    b.HasOne("DormSearchBe.Domain.Entity.Prices", "Prices")
-                        .WithMany("Houses")
-                        .HasForeignKey("PriceId");
-
                     b.HasOne("DormSearchBe.Domain.Entity.Ratings", "Ratings")
                         .WithMany("Houses")
                         .HasForeignKey("RatingsId");
@@ -570,8 +535,6 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Navigation("City");
 
                     b.Navigation("Favorites");
-
-                    b.Navigation("Prices");
 
                     b.Navigation("Ratings");
 
@@ -646,11 +609,6 @@ namespace DormSearchBe.Infrastructure.Migrations
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Message", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("DormSearchBe.Domain.Entity.Prices", b =>
-                {
-                    b.Navigation("Houses");
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Ratings", b =>

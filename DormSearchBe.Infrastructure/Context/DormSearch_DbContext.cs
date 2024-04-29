@@ -14,7 +14,6 @@ namespace DormSearchBe.Infrastructure.Context
         public virtual DbSet<Favorites> Favorites { get; set; }
         public virtual DbSet<Houses> Houses { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<Prices> Prices { get; set; }
         public virtual DbSet<Ratings> Ratings { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Refresh_Token> Refresh_Tokens { get; set; }
@@ -52,7 +51,7 @@ namespace DormSearchBe.Infrastructure.Context
                 e.HasOne(e => e.Areas).WithMany(e => e.Houses).HasForeignKey(e => e.AreasId).OnDelete(DeleteBehavior.ClientSetNull);
                 e.HasOne(e => e.City).WithMany(e => e.Houses).HasForeignKey(e => e.CityId).OnDelete(DeleteBehavior.ClientSetNull);
                 e.HasOne(e => e.Favorites).WithMany(e => e.Houses).HasForeignKey(e => e.FavoritesId).OnDelete(DeleteBehavior.ClientSetNull);
-                e.HasOne(e => e.Prices).WithMany(e => e.Houses).HasForeignKey(e => e.PriceId).OnDelete(DeleteBehavior.ClientSetNull);
+               /* e.HasOne(e => e.Prices).WithMany(e => e.Houses).HasForeignKey(e => e.PriceId).OnDelete(DeleteBehavior.ClientSetNull);*/
                 e.HasOne(e => e.Ratings).WithMany(e => e.Houses).HasForeignKey(e => e.RatingsId).OnDelete(DeleteBehavior.ClientSetNull);
                 /*e.HasOne(e => e.Users).WithMany(e => e.Houses).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);*/
                 e.HasOne(e => e.Roomstyles).WithMany(e => e.Houses).HasForeignKey(e => e.RoomstyleId).OnDelete(DeleteBehavior.ClientSetNull);
@@ -64,11 +63,7 @@ namespace DormSearchBe.Infrastructure.Context
                 e.HasKey(e => e.MessagesId);/*
                 e.HasOne(e => e.User).WithMany(e => e.Messages).HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.ClientSetNull);*/
             });
-            modelBuilder.Entity<Prices>(e =>
-            {
-                e.ToTable("Price");
-                e.HasKey(e => e.PriceId);
-            });
+          
             modelBuilder.Entity<Ratings>(e =>
             {
                 e.ToTable("Ratings");

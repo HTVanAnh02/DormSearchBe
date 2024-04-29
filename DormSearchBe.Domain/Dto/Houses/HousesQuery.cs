@@ -13,6 +13,7 @@ namespace DormSearchBe.Domain.Dto.Houses
         public string? HousesName { get; set; }
         public string? Title { get; set; }
         public string? Interior { get; set; }
+        public string? Acreage { get; set; }
         public string? AddressHouses { get; set; }
         public string? DateSubmitted { get; set; }
         public string? Photos { get; set; }
