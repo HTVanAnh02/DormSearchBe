@@ -9,5 +9,6 @@ namespace DormSearchBe.Domain.Repositories
 {
     public interface ICityRepository : IGenericRepository<City>
     {
+
     }
 }

@@ -12,7 +12,6 @@ namespace DormSearchBe.Domain.Entity
         public Guid RoleId { get; set; }
         public string? RoleName { get; set; }
         public string? RoleDescription { get; set; }
-        public string? ApprovalId { get; set; }
         public virtual ICollection<User>? Users { get; set; }
     }
 }

@@ -51,6 +51,16 @@ namespace DormSearchBe.Application.Service
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.DeletedError);
         }
 
+        public DataResponse<CityQuery> FindCityByEmail(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataResponse<CityQuery> FindCityByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public DataResponse<CityQuery> GetById(Guid id)
         {
             var item = _cityRepository.GetById(id);
@@ -82,8 +92,6 @@ namespace DormSearchBe.Application.Service
             }
             throw new ApiException(HttpStatusCode.ITEM_NOT_FOUND, HttpStatusMessages.NotFound);
         }
-
-
         public DataResponse<CityQuery> Update(CityDto dto)
         {
             var item = _cityRepository.GetById(dto.CityId);
@@ -98,5 +106,17 @@ namespace DormSearchBe.Application.Service
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.UpdatedError);
         }
+        public DataResponse<CityQuery> GetByName(string name)
+        {
+            var city = _cityRepository.GetByName(name);
+            if (city == null)
+            {
+                throw new ApiException(HttpStatusCode.ITEM_NOT_FOUND, HttpStatusMessages.NotFound);
+            }
+
+            return new DataResponse<CityQuery>(_mapper.Map<CityQuery>(city), HttpStatusCode.OK, HttpStatusMessages.OK);
+        }
+
+
     }
 }

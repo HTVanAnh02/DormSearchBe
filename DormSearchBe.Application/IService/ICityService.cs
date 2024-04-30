@@ -17,6 +17,7 @@ namespace DormSearchBe.Application.IService
         DataResponse<CityQuery> Update(CityDto dto);
         DataResponse<CityQuery> Delete(Guid id);
         DataResponse<CityQuery> GetById(Guid id);
+        DataResponse<CityQuery> GetByName(string name);
     }
     
 }

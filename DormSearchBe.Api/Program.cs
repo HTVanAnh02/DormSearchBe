@@ -77,7 +77,7 @@ var cloudinaryAccount = new Account(
 var cloudinary = new Cloudinary(cloudinaryAccount);
 builder.Services.AddSingleton(cloudinary);
 var app = builder.Build();
-using (var scope = app.Services.CreateScope())
+/*using (var scope = app.Services.CreateScope())
 {
     try
     {
@@ -115,7 +115,7 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine($"An error occurred: {ex.Message}");
         throw new ApiException(400, $"An error occurred: {ex.Message}");
     }
-}
+}*/
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

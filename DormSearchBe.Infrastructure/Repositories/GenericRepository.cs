@@ -136,6 +136,11 @@ namespace DormSearchBe.Infrastructure.Repositories
                 throw;
             }
         }
+
+        public T GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

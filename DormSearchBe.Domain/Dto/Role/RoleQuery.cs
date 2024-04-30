@@ -12,8 +12,6 @@ namespace DormSearchBe.Domain.Dto.Role
         public Guid RoleId { get; set; }
         public string? RoleName { get; set; }
         public string? RoleDescription { get; set; }
-        public string? ApprovalId { get; set; }
-        public string? ApprovalName { get; set; }
-
+        
     }
 }

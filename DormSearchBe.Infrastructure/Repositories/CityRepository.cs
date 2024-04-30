@@ -14,5 +14,6 @@ namespace DormSearchBe.Infrastructure.Repositories
         public CityRepository(DormSearch_DbContext context) : base(context)
         {
         }
+
     }
 }

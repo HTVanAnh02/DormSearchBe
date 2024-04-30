@@ -19,18 +19,55 @@ namespace DormSearchBe.Api.Controllers.City
         {
             return Ok(_cityService.Items(query));
         }
-
         [HttpPost]
         public IActionResult Create(CityDto dto)
         {
-            return Ok(_cityService.Create(dto));
+            // Kiểm tra xem tên thành phố đã tồn tại chưa
+            var existingCity = _cityService.GetByName(dto.CityName);
+            if (existingCity != null)
+            {
+                return Conflict("Tên thành phố đã tồn tại.");
+            }
+
+            // Tạo mới thành phố
+            var result = _cityService.Create(dto);
+            return Ok(result);
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Update(CityDto dto)
+        public IActionResult Update(Guid id, CityDto dto)
         {
-            return Ok(_cityService.Update(dto));
+            // Lấy thông tin của thành phố hiện tại từ cơ sở dữ liệu
+            var existingCity = _cityService.GetById(id);
+            if (existingCity == null)
+            {
+                return NotFound("Không tìm thấy thành phố cần cập nhật.");
+            }
+
+            // Kiểm tra xem có thành phố nào khác có cùng tên không (trừ thành phố đang cập nhật)
+            var otherCityWithSameName = _cityService.GetByName(dto.CityName);
+            if (otherCityWithSameName != null && otherCityWithSameName != existingCity)
+            {
+                return Conflict("Tên thành phố đã tồn tại.");
+            }
+
+            // Cập nhật thành phố
+            var result = _cityService.Update(dto);
+            return Ok(result);
         }
+
+
+        /*  [HttpPost]
+          public IActionResult Create(CityDto dto)
+          {
+              return Ok(_cityService.Create(dto));
+          }
+
+          [HttpPatch("{id}")]
+          public IActionResult Update(CityDto dto)
+          {
+              return Ok(_cityService.Update(dto));
+          }*/
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
