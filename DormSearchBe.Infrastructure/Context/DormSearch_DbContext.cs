@@ -8,7 +8,7 @@ namespace DormSearchBe.Infrastructure.Context
     public class DormSearch_DbContext:DbContext
     {
         public DormSearch_DbContext(DbContextOptions<DormSearch_DbContext> options) : base(options) { }
-        public virtual DbSet<Approval> Approvals { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<Areas> Areas { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Favorites> Favorites { get; set; }
@@ -22,10 +22,10 @@ namespace DormSearchBe.Infrastructure.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Approval>(e =>
+            modelBuilder.Entity<Permission>(e =>
             {
-                e.ToTable("Approvals");
-                e.HasKey(e => e.ApprovalId);
+                e.ToTable("Permissions");
+                e.HasKey(e => e.PermissionId);
             });
             modelBuilder.Entity<Areas>(e =>
             {

@@ -71,6 +71,16 @@ namespace DormSearchBe.Application.Service
             return new DataResponse<CityQuery>(_mapper.Map<CityQuery>(item), HttpStatusCode.OK, HttpStatusMessages.OK);
         }
 
+        public DataResponse<CityQuery> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*public DataResponse<CityQuery> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }*/
+
         public PagedDataResponse<CityQuery> Items(CommonListQuery commonList)
         {
             var query = _mapper.Map<List<CityQuery>>(_cityRepository.GetAllData());
@@ -106,7 +116,7 @@ namespace DormSearchBe.Application.Service
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.UpdatedError);
         }
-        public DataResponse<CityQuery> GetByName(string name)
+       /* public DataResponse<CityQuery> GetByName(string name)
         {
             var city = _cityRepository.GetByName(name);
             if (city == null)
@@ -115,7 +125,7 @@ namespace DormSearchBe.Application.Service
             }
 
             return new DataResponse<CityQuery>(_mapper.Map<CityQuery>(city), HttpStatusCode.OK, HttpStatusMessages.OK);
-        }
+        }*/
 
 
     }

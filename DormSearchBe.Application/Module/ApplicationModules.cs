@@ -21,7 +21,7 @@ namespace DormSearchBe.Application.Module
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddScoped<IApprovalService, ApprovalService>();
+            services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IAreasService, AreasService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICityService, CityService>();

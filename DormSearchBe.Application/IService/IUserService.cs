@@ -24,6 +24,8 @@ namespace DormSearchBe.Application.IService
         DataResponse<TokenDto> Register(Register dto);
         DataResponse<TokenDto> Refresh_Token(RefreshTokenSettings token);
         DataResponse<TokenDto> UserLoginByGoole(GoogleLoginRequest request);
-        List<Approval> GetUserApproval(Guid id);
+        IEnumerable<UserDto> GetAll();
+        bool Add(UserDto dto);
+        bool UpdatePass(UserDto dto);
     }
 }

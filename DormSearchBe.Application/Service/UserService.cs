@@ -9,6 +9,7 @@ using DormSearchBe.Domain.Dto.User;
 using DormSearchBe.Domain.Entity;
 using DormSearchBe.Domain.Repositories;
 using DormSearchBe.Infrastructure.Exceptions;
+using DormSearchBe.Infrastructure.Repositories;
 using DormSearchBe.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -31,17 +32,17 @@ namespace DormSearchBe.Application.Service
         private readonly IUserRepository _userRepository;
         public readonly IMapper _mapper;
         private readonly IRoleRepository _roleRepository;
-        private readonly IApprovaRepository _approvalRepository;
+        private readonly IPermissionRepository _permissionRepository;
         private readonly IRefreshTokenRepository _refeshtokenRepository;
         private readonly JWTSettings _jwtSettings;
         private readonly Cloudinary _cloudinary;
 
-        public UserService(IOptions<JWTSettings> jwtSettings, IUserRepository userRepository, IMapper mapper, IRoleRepository roleRepository, IApprovaRepository approvalRepository, Cloudinary cloudinary, IRefreshTokenRepository refeshtokenRepository)
+        public UserService(IOptions<JWTSettings> jwtSettings, IUserRepository userRepository, IMapper mapper, IRoleRepository roleRepository, IPermissionRepository permissionRepository, Cloudinary cloudinary, IRefreshTokenRepository refeshtokenRepository)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _roleRepository = roleRepository;
-            _approvalRepository = approvalRepository;
+            _permissionRepository = permissionRepository;
             _cloudinary = cloudinary;
             _jwtSettings = jwtSettings.Value;
             _refeshtokenRepository = refeshtokenRepository;
@@ -144,7 +145,6 @@ namespace DormSearchBe.Application.Service
             }
             return new DataResponse<UserQuery>(_mapper.Map<UserQuery>(item), HttpStatusCode.OK, HttpStatusMessages.UpdatedSuccessfully);
         }
-
     
         public DataResponse<TokenDto> Login(Login dto)
         {
@@ -404,7 +404,18 @@ namespace DormSearchBe.Application.Service
             throw new NotImplementedException();
         }
 
-        public List<Approval> GetUserApproval(Guid id)
+
+        public IEnumerable<UserDto> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Add(UserDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdatePass(UserDto dto)
         {
             throw new NotImplementedException();
         }

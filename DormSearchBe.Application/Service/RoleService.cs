@@ -97,7 +97,7 @@ namespace DormSearchBe.Application.Service
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.UpdatedError);
         }
-        public DataResponse<RoleQuery> GetByName(string name)
+  /*      public DataResponse<RoleQuery> GetByName(string name)
         {
             var city = _roleRepository.GetByName(name);
             if (city == null)
@@ -106,7 +106,7 @@ namespace DormSearchBe.Application.Service
             }
 
             return new DataResponse<RoleQuery>(_mapper.Map<RoleQuery>(city), HttpStatusCode.OK, HttpStatusMessages.OK);
-        }
+        }*/
 
 
     }

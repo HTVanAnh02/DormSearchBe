@@ -16,7 +16,7 @@ namespace DormSearchBe.Domain.Repositories
         T Delete(Guid id);
         T GetByString(string id);
         T DeleteByString(string id);
-        T GetByName(string name);
+       
 
     }
 }

@@ -22,13 +22,13 @@ namespace DormSearchBe.Api.Controllers.City
         [HttpPost]
         public IActionResult Create(CityDto dto)
         {
-            // Kiểm tra xem tên thành phố đã tồn tại chưa
+            /*// Kiểm tra xem tên thành phố đã tồn tại chưa
             var existingCity = _cityService.GetByName(dto.CityName);
             if (existingCity != null)
             {
                 return Conflict("Tên thành phố đã tồn tại.");
             }
-
+*/
             // Tạo mới thành phố
             var result = _cityService.Create(dto);
             return Ok(result);

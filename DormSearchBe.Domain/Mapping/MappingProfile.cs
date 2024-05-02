@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using DormSearchBe.Domain.Dto.Approval;
 using DormSearchBe.Domain.Dto.Areas;
 using DormSearchBe.Domain.Dto.Auth;
 using DormSearchBe.Domain.Dto.City;
 using DormSearchBe.Domain.Dto.Favorites;
 using DormSearchBe.Domain.Dto.Houses;
 using DormSearchBe.Domain.Dto.Messages;
+using DormSearchBe.Domain.Dto.Permission;
 using DormSearchBe.Domain.Dto.Prices;
 using DormSearchBe.Domain.Dto.Ratings;
 using DormSearchBe.Domain.Dto.Role;
@@ -19,8 +19,8 @@ namespace DormSearchBe.Domain.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Approval, ApprovalDto>().ReverseMap();
-            CreateMap<Approval, ApprovalQuery>().ReverseMap();
+            CreateMap<Permission, PermissionDto>().ReverseMap();
+            CreateMap<Permission, PermissionQuery>().ReverseMap();
 
             CreateMap<Areas, AreasDto>().ReverseMap();
             CreateMap<Areas, AreasQuery>().ReverseMap();

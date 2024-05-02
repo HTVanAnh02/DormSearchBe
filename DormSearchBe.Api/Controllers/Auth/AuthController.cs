@@ -7,7 +7,10 @@ using DormSearchBe.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DormSearchBe.Api.Controllers.Auth
 {
@@ -51,10 +54,45 @@ namespace DormSearchBe.Api.Controllers.Auth
             return Ok(_userService.Login(dto));
         }
         [Authorize]
-        [HttpPost("UserRegister")]
-        public IActionResult User_Register(Register dto)
+        [HttpPost("register")]
+        public IActionResult SingUp([FromForm] Register singup)
         {
-            return Ok(_userService.Register(dto));
+            var acoount = _userService.GetAll().Where(x => x.Email.Equals(singup.Email)).FirstOrDefault();
+            if (acoount != null)
+            {
+                return Conflict(new { message = "Tài khoản đã tồn tại." });
+            }
+            var accountClient = new UserDto()
+            {
+                Email = singup.Email,
+                Password = maHoaMatKhau(singup.Password),
+                
+            };
+            if (_userService.Add(accountClient))
+            {
+                return Ok("Bạn đã đăng ký thành công");
+            }
+            return Conflict();
+        }
+        /* [HttpPost("register")]
+         public IActionResult User_Register(Register dto)
+         {
+             return Ok(_userService.Register(dto));
+         }*/
+        private readonly string hash = @"foxle@rn";
+        private string maHoaMatKhau(string text)
+        {
+            byte[] data = UTF8Encoding.UTF8.GetBytes(text);
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+                using (TripleDESCryptoServiceProvider tripleDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    ICryptoTransform transform = tripleDes.CreateEncryptor();
+                    byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                    return Convert.ToBase64String(results);
+                }
+            }
         }
         [HttpPost("logout")]
         public IActionResult Logout()
@@ -82,7 +120,7 @@ namespace DormSearchBe.Api.Controllers.Auth
                 var userProfile = new
                 {
                     UserId = userId,
-                    Username = username,
+                    FullName = username,
                     Email = email,
                     AvatarUrl = avatarUrl
                 };
