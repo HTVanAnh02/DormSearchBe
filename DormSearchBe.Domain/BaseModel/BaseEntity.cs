@@ -8,11 +8,12 @@ namespace DormSearchBe.Domain.BaseModel
 {
     public class BaseEntity
     {
-        public Guid? createdBy { get; set; }
+        public Guid Id { get; set; }
+        public string? createdBy { get; set; }
         public DateTime? createdAt { get; set; }
-        public Guid? updatedBy { get; set; }
+        public string? updatedBy { get; set; }
         public DateTime? updatedAt { get; set; }
-        public Guid? deletedBy { get; set; }
+        public string deletedBy { get; set; }
         public DateTime? deletedAt { get; set; }
 
     }

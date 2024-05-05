@@ -1,0 +1,4 @@
+D:\ĐỒ ÁN\DormSearchBe\DormSearch\CommonHelper\obj\Debug\net7.0\CommonHelper.GeneratedMSBuildEditorConfig.editorconfig
+D:\ĐỒ ÁN\DormSearchBe\DormSearch\CommonHelper\obj\Debug\net7.0\CommonHelper.AssemblyInfoInputs.cache
+D:\ĐỒ ÁN\DormSearchBe\DormSearch\CommonHelper\obj\Debug\net7.0\CommonHelper.AssemblyInfo.cs
+D:\ĐỒ ÁN\DormSearchBe\DormSearch\CommonHelper\obj\Debug\net7.0\CommonHelper.csproj.CoreCompileInputs.cache

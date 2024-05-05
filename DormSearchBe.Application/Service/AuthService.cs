@@ -124,7 +124,7 @@ namespace DormSearchBe.Application.Service
                 RefreshToken = CreateRefreshToken(),
                 AccessTokenExpiration = (int)((DateTimeOffset)accessTokenExpiration).ToUnixTimeSeconds(),
                 RefreshTokenExpiration = (int)((DateTimeOffset)refreshTokenExpiration).ToUnixTimeSeconds(),
-                Role=user.Role
+                Role = user.Role
             };
             var refresh_token = new RefreshTokenDto
             {
@@ -155,10 +155,10 @@ namespace DormSearchBe.Application.Service
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
-         /*   foreach (var approvals in _userService.GetUserApproval(user.UserId))
-            {
-                claims.Add(new Claim(CustomClaims.Approvals, approvals.ApprovalName));
-            }*/
+            /*   foreach (var approvals in _userService.GetUserApproval(user.UserId))
+               {
+                   claims.Add(new Claim(CustomClaims.Approvals, approvals.ApprovalName));
+               }*/
             claims.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
             return claims;
         }
@@ -198,6 +198,11 @@ namespace DormSearchBe.Application.Service
             };
             _refreshTokenRepository.Update(_mapper.Map<Refresh_Token>(refresh_token));
             return tokenDto;
+        }
+
+        public dynamic checklogin(string username, string password)
+        {
+            throw new NotImplementedException();
         }
     }
 }

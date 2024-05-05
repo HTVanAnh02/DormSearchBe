@@ -15,11 +15,11 @@ using System.Threading.Tasks;
 
 namespace DormSearchBe.Application.Service
 {
-    public class AreasService:IAreasService
+    public class AreasService : IAreasService
     {
         private readonly IAreasRepository _areasRepository;
-        private readonly IMapper _mapper ;
-        
+        private readonly IMapper _mapper;
+
         public AreasService(IAreasRepository areasRepository, IMapper mapper)
         {
             _areasRepository = areasRepository;

@@ -145,7 +145,7 @@ namespace DormSearchBe.Application.Service
             }
             return new DataResponse<UserQuery>(_mapper.Map<UserQuery>(item), HttpStatusCode.OK, HttpStatusMessages.UpdatedSuccessfully);
         }
-    
+
         public DataResponse<TokenDto> Login(Login dto)
         {
             var user = _userRepository.GetAllData().Where(x => x.Email == dto.Email).SingleOrDefault();
@@ -229,7 +229,7 @@ namespace DormSearchBe.Application.Service
                 audience: _jwtSettings.Audience[0],
                 expires: accessTokenExpiration,
                  notBefore: DateTime.Now,
-                 claims: GetClaims(user,_jwtSettings.Audience),
+                 claims: GetClaims(user, _jwtSettings.Audience),
                  signingCredentials: signingCredentials);
 
             var handler = new JwtSecurityTokenHandler();
@@ -329,60 +329,60 @@ namespace DormSearchBe.Application.Service
             return tokenDto;
         }
 
-       /* public DataResponse<TokenDto> UserLoginByGoole(GoogleLoginRequest request)
-        {
-            try
-            {
-                var validPayload = GoogleJsonWebSignature.ValidateAsync(request.Credential).Result;
-                if (validPayload == null)
-                {
-                    throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.TokenOrUserNotFound);
-                }
-                if (!checkEmail(validPayload.Email))
-                {
+        /* public DataResponse<TokenDto> UserLoginByGoole(GoogleLoginRequest request)
+         {
+             try
+             {
+                 var validPayload = GoogleJsonWebSignature.ValidateAsync(request.Credential).Result;
+                 if (validPayload == null)
+                 {
+                     throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.TokenOrUserNotFound);
+                 }
+                 if (!checkEmail(validPayload.Email))
+                 {
 
-                    var job_seeker = _userRepository.GetAllData().Where(x => x.Email == validPayload.Email).SingleOrDefault();
-                    _userRepository.Update(job_seeker);
-                    var token = CreateToken(job_seeker);
-                    var tokenres = new TokenDto()
-                    {
-                        AccessToken = token.AccessToken,
-                        AccessTokenExpiration = token.AccessTokenExpiration,
-                        RefreshToken = token.RefreshToken,
-                        RefreshTokenExpiration = token.RefreshTokenExpiration,
-                        Role = token.Role
+                     var job_seeker = _userRepository.GetAllData().Where(x => x.Email == validPayload.Email).SingleOrDefault();
+                     _userRepository.Update(job_seeker);
+                     var token = CreateToken(job_seeker);
+                     var tokenres = new TokenDto()
+                     {
+                         AccessToken = token.AccessToken,
+                         AccessTokenExpiration = token.AccessTokenExpiration,
+                         RefreshToken = token.RefreshToken,
+                         RefreshTokenExpiration = token.RefreshTokenExpiration,
+                         Role = token.Role
 
-                    };
-                    return new DataResponse<TokenDto>(tokenres, 200, "Đăng nhập thành công");
-                }
-                else
-                {
+                     };
+                     return new DataResponse<TokenDto>(tokenres, 200, "Đăng nhập thành công");
+                 }
+                 else
+                 {
 
-                    var dto = new UserDto()
-                    {
-                        UserId = Guid.NewGuid(),
-                        Email = validPayload.Email,
-                        Avatar = validPayload.Picture,
-                        FullName = validPayload.Name,
-                    };
-                    var user = _userRepository.Create(_mapper.Map<User>(dto));
-                    var token = CreateToken(_mapper.Map<User>(user));
-                    var tokenres = new TokenDto()
-                    {
-                        AccessToken = token.AccessToken,
-                        AccessTokenExpiration = token.AccessTokenExpiration,
-                        RefreshToken = token.RefreshToken,
-                        RefreshTokenExpiration = token.RefreshTokenExpiration,
-                        Role = token.Role
-                    };
-                    return new DataResponse<TokenDto>(tokenres, 200, "Đăng nhập thành công");
-                }
-            }
-            catch (InvalidJwtException)
-            {
-                throw new ApiException(HttpStatusCode.BAD_REQUEST, "Token không hợp lệ");
-            }
-        }*/
+                     var dto = new UserDto()
+                     {
+                         UserId = Guid.NewGuid(),
+                         Email = validPayload.Email,
+                         Avatar = validPayload.Picture,
+                         FullName = validPayload.Name,
+                     };
+                     var user = _userRepository.Create(_mapper.Map<User>(dto));
+                     var token = CreateToken(_mapper.Map<User>(user));
+                     var tokenres = new TokenDto()
+                     {
+                         AccessToken = token.AccessToken,
+                         AccessTokenExpiration = token.AccessTokenExpiration,
+                         RefreshToken = token.RefreshToken,
+                         RefreshTokenExpiration = token.RefreshTokenExpiration,
+                         Role = token.Role
+                     };
+                     return new DataResponse<TokenDto>(tokenres, 200, "Đăng nhập thành công");
+                 }
+             }
+             catch (InvalidJwtException)
+             {
+                 throw new ApiException(HttpStatusCode.BAD_REQUEST, "Token không hợp lệ");
+             }
+         }*/
         public bool checkEmail(string email)
         {
             var job_seeker = _userRepository.GetAllData().FirstOrDefault(x => x.Email.Equals(email));

@@ -13,5 +13,6 @@ namespace DormSearchBe.Application.IService
     {
         DataResponse<TokenDto> Login(LoginDto dto);
         DataResponse<TokenDto> Refresh_Token(RefreshTokenSettings token);
+        dynamic checklogin(string username, string password);
     }
 }

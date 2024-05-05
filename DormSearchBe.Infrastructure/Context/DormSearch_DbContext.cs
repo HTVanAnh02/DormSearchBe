@@ -91,6 +91,7 @@ namespace DormSearchBe.Infrastructure.Context
                 e.HasOne(e => e.Favorites).WithMany(e => e.Users).HasForeignKey(e => e.FavoritesId).OnDelete(DeleteBehavior.ClientSetNull);
                 e.HasOne(e => e.Messages).WithMany(e => e.Users).HasForeignKey(e => e.MessageId).OnDelete(DeleteBehavior.ClientSetNull);
                 e.HasOne(e => e.Houses).WithMany(e => e.Users).HasForeignKey(e => e.HousesId).OnDelete(DeleteBehavior.ClientSetNull);
+                e.HasOne(x => x.Roles).WithMany(x => x.Users).HasForeignKey(x => x.RoleId);
             });
             modelBuilder.Entity<Refresh_Token>(e =>
             {

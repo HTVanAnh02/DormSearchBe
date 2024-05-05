@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DormSearchBe.Api", "DormSearchBe.Api\DormSearchBe.Api.csproj", "{717732B8-A7A6-4FBD-8094-DEE2B7A213CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DormSearchBe.Api", "DormSearchBe.Api\DormSearchBe.Api.csproj", "{717732B8-A7A6-4FBD-8094-DEE2B7A213CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DormSearchBe.Application", "DormSearchBe.Application\DormSearchBe.Application.csproj", "{19AE1C58-BC4D-4E36-9444-D2294E26D986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DormSearchBe.Application", "DormSearchBe.Application\DormSearchBe.Application.csproj", "{19AE1C58-BC4D-4E36-9444-D2294E26D986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DormSearchBe.Domain", "DormSearchBe.Domain\DormSearchBe.Domain.csproj", "{04FA8F15-89CD-4D7E-95F5-47B2588B571B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DormSearchBe.Domain", "DormSearchBe.Domain\DormSearchBe.Domain.csproj", "{04FA8F15-89CD-4D7E-95F5-47B2588B571B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DormSearchBe.Infrastructure", "DormSearchBe.Infrastructure\DormSearchBe.Infrastructure.csproj", "{C1F966B1-04A9-40B3-8E3D-0CC39CD37976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DormSearchBe.Infrastructure", "DormSearchBe.Infrastructure\DormSearchBe.Infrastructure.csproj", "{C1F966B1-04A9-40B3-8E3D-0CC39CD37976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

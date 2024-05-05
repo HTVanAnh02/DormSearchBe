@@ -17,5 +17,6 @@ namespace DormSearchBe.Application.IService
         DataResponse<AreasQuery> Update(AreasDto dto);
         DataResponse<AreasQuery> Delete(Guid id);
         DataResponse<AreasQuery> GetById(Guid id);
+       
     }
 }

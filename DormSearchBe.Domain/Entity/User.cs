@@ -30,8 +30,8 @@ namespace DormSearchBe.Domain.Entity
         public Favorites? Favorites { get; set; }
         public Message? Messages { get; set; }
         public Houses? Houses { get; set; }
-        public  ICollection<Refresh_Token>? Refresh_Tokens { get; set; }
-        public User() 
+        public ICollection<Refresh_Token>? Refresh_Tokens { get; set; }
+        public User()
         {
             Role = " Admin";
             Avatar = "";

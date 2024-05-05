@@ -22,37 +22,6 @@ namespace DormSearchBe.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DormSearchBe.Domain.Entity.Approval", b =>
-                {
-                    b.Property<string>("ApprovalId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApprovalName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("createdAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("deletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("updatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ApprovalId");
-
-                    b.ToTable("Approvals", (string)null);
-                });
-
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Areas", b =>
                 {
                     b.Property<Guid>("AreasId")
@@ -63,23 +32,27 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AreasId");
 
@@ -95,23 +68,27 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<string>("CityName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CityId");
 
@@ -127,6 +104,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<Guid>("HousesId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsFavorites")
                         .HasColumnType("bit");
 
@@ -136,20 +116,21 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FavoritesId");
 
@@ -183,6 +164,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<string>("HousesName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Interior")
                         .HasColumnType("nvarchar(max)");
 
@@ -207,20 +191,21 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("HousesId");
 
@@ -243,6 +228,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Messages")
                         .HasColumnType("nvarchar(max)");
 
@@ -252,24 +240,60 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MessagesId");
 
                     b.ToTable("Messages", (string)null);
+                });
+
+            modelBuilder.Entity("DormSearchBe.Domain.Entity.Permission", b =>
+                {
+                    b.Property<string>("PermissionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PermissionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("deletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("updatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PermissionId");
+
+                    b.ToTable("Permissions", (string)null);
                 });
 
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Ratings", b =>
@@ -282,6 +306,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("HousesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool?>("IsFeedback")
@@ -300,20 +327,21 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RatingsId");
 
@@ -323,6 +351,9 @@ namespace DormSearchBe.Infrastructure.Migrations
             modelBuilder.Entity("DormSearchBe.Domain.Entity.Refresh_Token", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("RefreshToken")
@@ -337,20 +368,21 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
@@ -363,8 +395,8 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ApprovalId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("RoleDescription")
                         .HasColumnType("nvarchar(max)");
@@ -375,20 +407,21 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
 
@@ -401,26 +434,30 @@ namespace DormSearchBe.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("RoomstyleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoomstyleId");
 
@@ -454,6 +491,9 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<Guid?>("HousesId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool?>("Is_Active")
                         .HasColumnType("bit");
 
@@ -478,20 +518,21 @@ namespace DormSearchBe.Infrastructure.Migrations
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("createdBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("deletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("deletedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("deletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("updatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("updatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("updatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 

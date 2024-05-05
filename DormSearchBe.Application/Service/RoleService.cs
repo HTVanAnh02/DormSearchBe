@@ -3,7 +3,6 @@ using DormSearchBe.Application.Helpers;
 using DormSearchBe.Application.IService;
 using DormSearchBe.Application.Wrappers.Concrete;
 using DormSearchBe.Domain.Dto.Role;
-using DormSearchBe.Domain.Dto.Role;
 using DormSearchBe.Domain.Entity;
 using DormSearchBe.Domain.Repositories;
 using DormSearchBe.Infrastructure.Exceptions;
@@ -52,6 +51,11 @@ namespace DormSearchBe.Application.Service
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.DeletedError);
         }
 
+        public IEnumerable<RoleDto> getALL_NoQuey()
+        {
+            throw new NotImplementedException();
+        }
+
         public DataResponse<RoleQuery> GetById(Guid id)
         {
             var item = _roleRepository.GetById(id);
@@ -60,6 +64,11 @@ namespace DormSearchBe.Application.Service
                 throw new ApiException(HttpStatusCode.ITEM_NOT_FOUND, HttpStatusMessages.NotFound);
             }
             return new DataResponse<RoleQuery>(_mapper.Map<RoleQuery>(item), HttpStatusCode.OK, HttpStatusMessages.OK);
+        }
+
+        public RoleDto getRoleById(Guid id)
+        {
+            throw new NotImplementedException();
         }
 
         public PagedDataResponse<RoleQuery> Items(CommonListQuery commonList)
@@ -97,16 +106,16 @@ namespace DormSearchBe.Application.Service
             }
             throw new ApiException(HttpStatusCode.BAD_REQUEST, HttpStatusMessages.UpdatedError);
         }
-  /*      public DataResponse<RoleQuery> GetByName(string name)
-        {
-            var city = _roleRepository.GetByName(name);
-            if (city == null)
-            {
-                throw new ApiException(HttpStatusCode.ITEM_NOT_FOUND, HttpStatusMessages.NotFound);
-            }
+        /*      public DataResponse<RoleQuery> GetByName(string name)
+              {
+                  var city = _roleRepository.GetByName(name);
+                  if (city == null)
+                  {
+                      throw new ApiException(HttpStatusCode.ITEM_NOT_FOUND, HttpStatusMessages.NotFound);
+                  }
 
-            return new DataResponse<RoleQuery>(_mapper.Map<RoleQuery>(city), HttpStatusCode.OK, HttpStatusMessages.OK);
-        }*/
+                  return new DataResponse<RoleQuery>(_mapper.Map<RoleQuery>(city), HttpStatusCode.OK, HttpStatusMessages.OK);
+              }*/
 
 
     }

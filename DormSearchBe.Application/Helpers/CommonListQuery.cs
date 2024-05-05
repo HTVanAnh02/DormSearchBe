@@ -10,12 +10,14 @@ namespace DormSearchBe.Application.Helpers
     {
         public int page { get; set; }
         public int limit { get; set; }
+        public string orderBy { get; set; }
         public string keyword { get; set; }
         public CommonListQuery()
         {
             page = 1;
             limit = 10;
-            keyword = "";
+            orderBy = "CreateAt";
+            keyword = string.Empty;
         }
 
     }
